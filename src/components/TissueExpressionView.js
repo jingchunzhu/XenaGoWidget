@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import CanvasDrawing from "../CanvasDrawing";
 import PropTypes from 'prop-types';
 import mutationScores from '../mutationVector'
+import CrossHair from "./CrossHair";
 
 
 let labelHeight = 150;
@@ -268,6 +269,7 @@ export default class TissueExpressionView extends Component {
         return (
             <div>
                 <h3>{titleString}</h3>
+                <CrossHair/>
                 <CanvasDrawing width={width} height={height} filter={filter} draw={drawTissueView} data={data} onClick={onClick}
                                onHover={onHover}/>
             </div>
