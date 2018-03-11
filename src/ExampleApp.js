@@ -39,8 +39,6 @@ export default class SampleApp extends Component {
                 samples: [],
             },
             pathwayHoverData: {
-                aaa: 'aaaaValue',
-                bbb: 'bbbbValue',
                 x: null,
                 y: null,
                 tissue: null,
@@ -48,8 +46,6 @@ export default class SampleApp extends Component {
                 score: null
             },
             pathwayClickData: {
-                aaa: 'aaaaValue',
-                bbb: 'bbbbValue',
                 x: null,
                 y: null,
                 tissue: null,
@@ -57,8 +53,6 @@ export default class SampleApp extends Component {
                 score: null
             },
             geneHoverData: {
-                aaa: 'aaaaValue',
-                bbb: 'bbbbValue',
                 x: null,
                 y: null,
                 tissue: null,
@@ -66,8 +60,6 @@ export default class SampleApp extends Component {
                 score: null
             },
             geneClickData: {
-                aaa: 'aaaaValue',
-                bbb: 'bbbbValue',
                 x: null,
                 y: null,
                 tissue: null,
@@ -90,37 +82,22 @@ export default class SampleApp extends Component {
     clickPathway(props) {
         if (props && props.x) {
 
-            // const dataProps = props;
-            //
-            // const newState = update(this.state, {
-            //     pathwayClickData: dataProps,
-            //     pathwayData : {
-            //
-            //     }
-            // });
-            // alert(JSON.stringify(props))
-
-
             this.setState({pathwayClickData: props});
-            // this.setState(newState);
 
-            // let selectedPathway = this.state.pathwayClickData.pathway;
             let selectedTissue = this.state.pathwayClickData.tissue;
-            // alert(selectedPathway + ' '+selectedTissue);
             if(selectedTissue==='Header'){
-                let convertedTissueData = JSON.parse(JSON.stringify(this.state.pathwayData));
-                convertedTissueData.selectedPathway = this.state.pathwayClickData.pathway;
-                if(convertedTissueData.selectedPathway.sortOrder){
+                let selectedPathway = JSON.parse(JSON.stringify(this.state.pathwayClickData.pathway)) ;
+                if(selectedPathway.sortOrder){
                     // just swap the order
-                    convertedTissueData.selectedPathway.sortOrder = convertedTissueData.selectedPathway.sortOrder ==='desc' ? 'asc' : 'desc';
+                    selectedPathway.sortOrder = selectedPathway.sortOrder === 'desc' ? 'asc' : 'desc';
                 }
                 else{
-                    convertedTissueData.selectedPathway.sortOrder = 'desc';
+                    selectedPathway.sortOrder = 'desc';
                 }
-                let myNewState = JSON.parse(JSON.stringify(convertedTissueData));
-                this.setState({tissueData: myNewState});
+                let myNewState = JSON.parse(JSON.stringify(selectedPathway));
+                // this.setState({tissueData: myNewState});
+                this.setState({selectedPathway: myNewState});
             }
-
 
 
             let selectedGenes = this.state.pathwayClickData.pathway.gene;
@@ -144,14 +121,6 @@ export default class SampleApp extends Component {
             }
             convertedGeneData.pathways = pathwayData;
 
-            // TODO: use update instead of the hacky JSON stringify to parse
-            //  let geneData = this.state.geneData;
-            //
-            // // do filtering stuff
-            // let filteredPathways = filterData(geneData); // function filtering the pathways
-            //
-            //  let newData = update(geneData.pathways, filteredPathways );
-            //  this.setState({geneData: newData});
             let myNewState = JSON.parse(JSON.stringify(convertedGeneData));
             this.setState({geneData: myNewState});
         }
