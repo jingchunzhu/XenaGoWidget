@@ -104,19 +104,18 @@ export default class SampleApp extends Component {
             this.setState({pathwayClickData: props});
             // this.setState(newState);
 
-            let selectedPathway = this.state.pathwayClickData.pathway;
+            // let selectedPathway = this.state.pathwayClickData.pathway;
             let selectedTissue = this.state.pathwayClickData.tissue;
             // alert(selectedPathway + ' '+selectedTissue);
             if(selectedTissue==='Header'){
                 let convertedTissueData = JSON.parse(JSON.stringify(this.state.pathwayData));
                 convertedTissueData.selectedPathway = this.state.pathwayClickData.pathway;
-                if(convertedTissueData.sortingDir === convertedTissueData.selectedPathway){
+                if(convertedTissueData.selectedPathway.sortOrder){
                     // just swap the order
-                    convertedTissueData.sortingDir = convertedTissueData.sortingDir==='desc' ? 'asc' : 'desc';
+                    convertedTissueData.selectedPathway.sortOrder = convertedTissueData.selectedPathway.sortOrder ==='desc' ? 'asc' : 'desc';
                 }
                 else{
-                    convertedTissueData.sortingPathway = this.state.pathwayClickData.pathway;
-                    convertedTissueData.sortingDir = 'desc';
+                    convertedTissueData.selectedPathway.sortOrder = 'desc';
                 }
                 let myNewState = JSON.parse(JSON.stringify(convertedTissueData));
                 this.setState({tissueData: myNewState});
