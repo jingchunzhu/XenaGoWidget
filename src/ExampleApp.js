@@ -20,6 +20,11 @@ export default class SampleApp extends Component {
     constructor(props) {
         super(props);
 
+
+        // let sortedPathway, sortedGene;
+        // let sortedPathwayDirection = 'desc';
+        // let sortedGeneDirection = 'desc';
+
         this.state = {
             pathwayData: {
                 expression: ExampleExpression,
@@ -93,10 +98,30 @@ export default class SampleApp extends Component {
             //
             //     }
             // });
+            // alert(JSON.stringify(props))
 
 
             this.setState({pathwayClickData: props});
             // this.setState(newState);
+
+            let selectedPathway = this.state.pathwayClickData.pathway;
+            let selectedTissue = this.state.pathwayClickData.tissue;
+            // alert(selectedPathway + ' '+selectedTissue);
+            if(selectedTissue==='Header'){
+                let convertedTissueData = JSON.parse(JSON.stringify(this.state.pathwayData));
+                convertedTissueData.selectedPathway = this.state.pathwayClickData.pathway;
+                if(convertedTissueData.sortingDir === convertedTissueData.selectedPathway){
+                    // just swap the order
+                    convertedTissueData.sortingDir = convertedTissueData.sortingDir==='desc' ? 'asc' : 'desc';
+                }
+                else{
+                    convertedTissueData.sortingPathway = this.state.pathwayClickData.pathway;
+                    convertedTissueData.sortingDir = 'desc';
+                }
+                let myNewState = JSON.parse(JSON.stringify(convertedTissueData));
+                this.setState({tissueData: myNewState});
+            }
+
 
 
             let selectedGenes = this.state.pathwayClickData.pathway.gene;
