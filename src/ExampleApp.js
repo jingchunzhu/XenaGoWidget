@@ -95,8 +95,8 @@ export default class SampleApp extends Component {
                     selectedPathway.sortOrder = 'desc';
                 }
                 let myNewState = JSON.parse(JSON.stringify(selectedPathway));
-                // this.setState({tissueData: myNewState});
                 this.setState({selectedPathway: myNewState});
+                this.setState({pathwayData: JSON.parse(JSON.stringify(this.state.pathwayData))});
             }
 
 

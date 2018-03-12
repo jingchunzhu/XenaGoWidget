@@ -241,8 +241,8 @@ function associateData(expression, pathways, samples, filter) {
 
 
 function drawTissueView(vg, props) {
-    // console.log('drawing tissue with props');
-    // console.log(props)
+    console.log('drawing tissue with props');
+    console.log(props)
     let {width, height, filter, onClick, onHover, data: {expression, pathways, samples}} = props;
     pathwayData = pathways;
     expressionData = expression;
