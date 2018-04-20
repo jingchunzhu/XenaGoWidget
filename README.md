@@ -35,9 +35,8 @@ React widget for analyzing expression of tissue samples within a pathway.
 ## Data TODO
 
 - add cell-lines 
-- add expression data 
-- integration with Viper functional analysis 
-- add outlier pathways 
+- add expression data : outlier expression
+- add expression driven pathways : e.g. integration with Viper functional analysis 
 
 
 ## Possible TODO
